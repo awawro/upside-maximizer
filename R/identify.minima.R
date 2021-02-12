@@ -8,9 +8,9 @@
 #' @import dplyr
 #' @import ggpmisc
 
-identify.minima <- function(df, span) {
+identify.minima <- function(df, span = 11) {
 
-    loc.minimum <- ggpmisc:::find_peaks(-df$close, span)
+    loc.minimum <- ggpmisc:::find_peaks(-df$close, span = span)
 
     df.extr <- dplyr::mutate(df, minimum = "no")
 

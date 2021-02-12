@@ -12,9 +12,9 @@
 
 upside.maximizer <- function(stocks, from = "2020-08-01", span = 11, sell_upper = 0.2, sell_lower = 0.4,...) {
 
-    loaded.df <- load.data(stocks, from)
+    loaded.df <- load.data(stocks = stocks, from = from)
 
-    minima.df <- identify.minima(loaded.df, span)
+    minima.df <- identify.minima(df = loaded.df, span = span)
 
     last.min <- tail(dplyr::filter(minima.df, minimum == "yes"), 1)
 

@@ -7,7 +7,7 @@
 #' @import dplyr
 #' @import tidyquant
 
-load.data <- function(stocks, from) {
+load.data <- function(stocks, from = "2020-08-01") {
 
     data.full <- tidyquant::tq_get(stocks, from = from)
     data.full <- dplyr::select(data.full, symbol, date, close)
