@@ -4,7 +4,7 @@
 \alias{load.data}
 \title{Load defined stocks historical data}
 \usage{
-load.data(stocks, from)
+load.data(stocks, from = "2020-08-01")
 }
 \arguments{
 \item{stocks}{A vector of stock tickers}

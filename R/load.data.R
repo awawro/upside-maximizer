@@ -3,9 +3,6 @@
 #' Function loads historical data (open, high, low, close) for a given vector of stock tickers
 #'
 #' @param stocks A vector of stock tickers
-#'
-#' @import dplyr
-#' @import tidyquant
 
 load.data <- function(stocks, from = "2020-08-01") {
 

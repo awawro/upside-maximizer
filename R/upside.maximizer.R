@@ -7,7 +7,6 @@
 #'
 #' @return A list containing full data df, last local minimum and maximum records, upper and lower sell zone boundary
 #'
-#' @import dplyr
 #' @export
 
 upside.maximizer <- function(stocks, from = "2020-08-01", span_min = 11, span_max = 11) {
