@@ -10,31 +10,18 @@
 #' @import dplyr
 #' @export
 
-upside.maximizer <- function(stocks, from = "2020-08-01", span = 11, sell_upper = 0.2, sell_lower = 0.4,...) {
+upside.maximizer <- function(stocks, from = "2020-08-01", span_min = 11, span_max = 11) {
 
-    loaded.df <- load.data(stocks = stocks, from = from)
+    full.df <- load.data(stocks = stocks, from = from)
 
-    minima.df <- identify.minima(df = loaded.df, span = span)
+    minima.df <- dplyr::filter(identify.minima(df = full.df, span = span_min), minimum == "yes")
 
-    last.min <- tail(dplyr::filter(minima.df, minimum == "yes"), 1)
-
-    min.val <- last.min$close
-
-    past.min <- dplyr::filter(minima.df, date > last.min$date)
-
-    max.val <- max(past.min$close)
-
-    last.max <- dplyr::filter(past.min, close == max.val)
-
-    range.up <- max.val - (max.val - min.val) * sell_upper
-    range.dn <- max.val - (max.val - min.val) * sell_lower
+    maxima.df <- dplyr::filter(identify.maxima(df = full.df, span = span_max), maximum == "yes")
 
     output.list <- list(
-        "data" = minima.df,
-        "last.min" = last.min,
-        "last.max" = last.max,
-        "range.up" = range.up,
-        "range.dn" = range.dn
+        "data" = full.df,
+        "loc.min" = minima.df,
+        "loc.max" = maxima.df
     )
 
     return(output.list)
